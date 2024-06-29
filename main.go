@@ -1,6 +1,7 @@
 package main
 
 import (
+	"abhiroop43/pokedex/dto"
 	"bufio"
 	"fmt"
 	"os"
@@ -31,6 +32,18 @@ func main() {
 				fmt.Println("Error:", err.Error())
 				os.Exit(1)
 			}
+		case "map\n":
+			pokeApiClient := dto.Client{}
+			locations, err := pokeApiClient.ListLocations()
+			if err != nil {
+				_ = fmt.Errorf("error fetching locations: %v", err)
+			}
+			for _, locations := range locations.Results {
+				fmt.Printf("Location: %v, URL: %v\n", locations.Name, locations.URL)
+			}
+		case "mapb\n":
+			currentLocation := "Pallet Town"
+			fmt.Println("Current Location: {}, Displaying the previous 20 locations...\n", currentLocation)
 		default:
 			fmt.Println("Invalid command")
 			fmt.Println()
