@@ -64,3 +64,19 @@ func TestDelete(t *testing.T) {
 		t.Errorf("%s should have been deleted", keyOne)
 	}
 }
+
+func TestDeleteFail(t *testing.T) {
+	interval := time.Millisecond * 10
+	cache := NewCache(interval)
+
+	keyOne := "key1"
+	cache.Add(keyOne, []byte("val"))
+
+	time.Sleep(interval / 2)
+
+	_, ok := cache.Get(keyOne)
+
+	if !ok {
+		t.Errorf("%s should not have been deleted", keyOne)
+	}
+}
