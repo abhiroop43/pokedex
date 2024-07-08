@@ -9,7 +9,8 @@ func CommandHelp() error {
 	availableCommands := GetCommands()
 
 	for _, command := range availableCommands {
-		fmt.Printf("%s: %s\n\n", command.Name, command.Description)
+		fmt.Printf(" - %s: %s\n", command.Name, command.Description)
 	}
+	fmt.Println("")
 	return nil
 }

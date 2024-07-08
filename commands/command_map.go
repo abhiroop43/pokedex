@@ -5,7 +5,7 @@ import (
 	"fmt"
 )
 
-func callbackMap() error {
+func CommandMap() error {
 	pokeApiClient := dto.Client{}
 	locations, err := pokeApiClient.ListLocations()
 	if err != nil {
