@@ -30,6 +30,11 @@ func startRepl(config *dto.Config) {
 			continue
 		}
 		commandName := cleaned[0]
+		var args []string
+
+		if len(cleaned) > 1 {
+			args = cleaned[1:]
+		}
 
 		availableCommands := commands.GetCommands()
 
@@ -40,7 +45,7 @@ func startRepl(config *dto.Config) {
 			continue
 		}
 
-		err := command.Callback(config)
+		err := command.Callback(config, args...)
 
 		if err != nil {
 			fmt.Println(err.Error())

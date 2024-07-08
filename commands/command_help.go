@@ -5,7 +5,7 @@ import (
 	"fmt"
 )
 
-func CommandHelp(config *dto.Config) error {
+func CommandHelp(config *dto.Config, args ...string) error {
 	fmt.Printf("Welcome to the Pokedex\n")
 	fmt.Printf("The available commands are as follows:\n\n")
 

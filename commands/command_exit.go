@@ -5,7 +5,7 @@ import (
 	"os"
 )
 
-func CommandExit(config *dto.Config) error {
+func CommandExit(config *dto.Config, args ...string) error {
 	os.Exit(0)
 	return nil
 }

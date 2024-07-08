@@ -24,5 +24,10 @@ func GetCommands() map[string]dto.CliCommand {
 			Description: "Shows the previous 20 locations on the map",
 			Callback:    CommandMapB,
 		},
+		"explore": {
+			Name:        "explore (a location)",
+			Description: "Lists all the Pokemons in a location",
+			Callback:    CommandExplore,
+		},
 	}
 }

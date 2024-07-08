@@ -6,7 +6,7 @@ import (
 	"fmt"
 )
 
-func CommandMapB(config *dto.Config) error {
+func CommandMapB(config *dto.Config, args ...string) error {
 
 	if config.PreviousLocationUrl == nil {
 		return errors.New("you are on the first page")
