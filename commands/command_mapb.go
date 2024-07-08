@@ -2,10 +2,16 @@ package commands
 
 import (
 	"abhiroop43/pokedex/dto"
+	"errors"
 	"fmt"
 )
 
 func CommandMapB(config *dto.Config) error {
+
+	if config.PreviousLocationUrl == nil {
+		return errors.New("you are on the first page")
+	}
+
 	locations, err := config.PokeApiClient.ListLocations(config.PreviousLocationUrl)
 	if err != nil {
 		_ = fmt.Errorf("error fetching locations: %v", err)

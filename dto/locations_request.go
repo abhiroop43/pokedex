@@ -15,6 +15,21 @@ func (c *Client) ListLocations(pageUrl *string) (LocationsResponse, error) {
 		fullUrl = *pageUrl
 	}
 
+	// check cache entry
+	cacheData, ok := c.cache.Get(fullUrl)
+	if ok {
+		//fmt.Println("loading from cache....")
+		locationsResponse := LocationsResponse{}
+		err := json.Unmarshal(cacheData, &locationsResponse)
+		if err != nil {
+			return LocationsResponse{}, err
+		}
+
+		return locationsResponse, nil
+	}
+
+	//fmt.Println("loading from http request....")
+
 	req, err := http.NewRequest("GET", fullUrl, nil)
 	if err != nil {
 		return LocationsResponse{}, err
@@ -46,6 +61,8 @@ func (c *Client) ListLocations(pageUrl *string) (LocationsResponse, error) {
 	if err != nil {
 		return LocationsResponse{}, err
 	}
+
+	c.cache.Add(fullUrl, data)
 
 	return locationsResponse, nil
 }

@@ -1,33 +1,27 @@
 package cache
 
-import "time"
+import (
+	"time"
+)
 
 type Cache struct {
-	cache map[string]cacheEntry
+	Cache map[string]CacheEntry
 }
 
-type cacheEntry struct {
+type CacheEntry struct {
 	val       []byte
 	createdAt time.Time
 }
 
-func NewCache(interval time.Duration) Cache {
-	c := Cache{
-		cache: make(map[string]cacheEntry),
-	}
-	go c.DeleteContinuously(interval)
-	return c
-}
-
 func (c *Cache) Add(key string, val []byte) {
-	c.cache[key] = cacheEntry{
+	c.Cache[key] = CacheEntry{
 		val:       val,
 		createdAt: time.Now().UTC(),
 	}
 }
 
 func (c *Cache) Get(key string) ([]byte, bool) {
-	retrievedCache, ok := c.cache[key]
+	retrievedCache, ok := c.Cache[key]
 
 	return retrievedCache.val, ok
 }
@@ -42,9 +36,17 @@ func (c *Cache) DeleteContinuously(interval time.Duration) {
 
 func (c *Cache) Delete(t time.Duration) {
 	threshold := time.Now().UTC().Add(-t)
-	for k, v := range c.cache {
+	for k, v := range c.Cache {
 		if v.createdAt.Before(threshold) {
-			delete(c.cache, k)
+			delete(c.Cache, k)
 		}
 	}
+}
+
+func NewCache(interval time.Duration) Cache {
+	c := Cache{
+		Cache: make(map[string]CacheEntry),
+	}
+	go c.DeleteContinuously(interval)
+	return c
 }

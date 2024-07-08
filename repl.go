@@ -44,7 +44,6 @@ func startRepl(config *dto.Config) {
 
 		if err != nil {
 			fmt.Println(err.Error())
-			continue
 		}
 	}
 }

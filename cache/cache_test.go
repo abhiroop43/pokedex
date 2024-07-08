@@ -8,7 +8,7 @@ import (
 func TestCreateNilCache(t *testing.T) {
 	cache := NewCache(time.Millisecond)
 
-	if cache.cache == nil {
+	if cache.Cache == nil {
 		t.Error("cache is nil")
 	}
 }
