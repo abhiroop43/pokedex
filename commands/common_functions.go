@@ -9,11 +9,6 @@ func GetCommands() map[string]dto.CliCommand {
 			Description: "Prints the help menu",
 			Callback:    CommandHelp,
 		},
-		"exit": {
-			Name:        "exit",
-			Description: "Closes the Pokedex",
-			Callback:    CommandExit,
-		},
 		"map": {
 			Name:        "map",
 			Description: "Shows the next 20 locations on the map",
@@ -28,6 +23,16 @@ func GetCommands() map[string]dto.CliCommand {
 			Name:        "explore (a location)",
 			Description: "Lists all the Pokemons in a location",
 			Callback:    CommandExplore,
+		},
+		"catch": {
+			Name:        "catch (a pokemon)",
+			Description: "Try to catch a Pokemon for your Pokedex",
+			Callback:    CommandCatch,
+		},
+		"exit": {
+			Name:        "exit",
+			Description: "Closes the Pokedex",
+			Callback:    CommandExit,
 		},
 	}
 }
