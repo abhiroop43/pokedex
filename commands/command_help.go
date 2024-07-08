@@ -3,10 +3,13 @@ package commands
 import "fmt"
 
 func CommandHelp() error {
-	fmt.Println("Welcome to the Pokedex")
-	fmt.Println("The available commands are as follows:")
-	fmt.Println("help: Displays this guide")
-	fmt.Println("exit: Closes the Pokedex")
-	fmt.Println("")
+	fmt.Printf("Welcome to the Pokedex\n")
+	fmt.Printf("The available commands are as follows:\n\n")
+
+	availableCommands := GetCommands()
+
+	for _, command := range availableCommands {
+		fmt.Printf("%s: %s\n\n", command.Name, command.Description)
+	}
 	return nil
 }

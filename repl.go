@@ -28,19 +28,22 @@ func startRepl() {
 		if len(cleaned) == 0 {
 			continue
 		}
-		command := cleaned[0]
+		commandName := cleaned[0]
 
-		switch command {
-		case "help":
-			fmt.Println("Welcome to the Pokedex")
-			fmt.Println("The available commands are as follows:")
-			fmt.Println("help: Displays this guide")
-			fmt.Println("exit: Closes the Pokedex")
-			fmt.Println("")
-		case "exit":
-			os.Exit(0)
-		default:
+		availableCommands := commands.GetCommands()
+
+		command, ok := availableCommands[commandName]
+
+		if !ok {
 			fmt.Println("Invalid command")
+			continue
+		}
+
+		err := command.Callback()
+
+		if err != nil {
+			fmt.Println(err.Error())
+			continue
 		}
 	}
 }
@@ -49,29 +52,4 @@ func cleanInput(str string) []string {
 	lowerString := strings.ToLower(str)
 	words := strings.Fields(lowerString)
 	return words
-}
-
-func getCommands() map[string]cliCommand {
-	return map[string]cliCommand{
-		"help": {
-			name:        "help",
-			description: "Prints the help menu",
-			callback:    commands.CommandHelp,
-		},
-		"exit": {
-			name:        "exit",
-			description: "Closes the Pokedex",
-			callback:    commands.CommandExit,
-		},
-		"map": {
-			name:        "map",
-			description: "Shows the next 20 locations on the map",
-			callback:    nil,
-		},
-		"mapb": {
-			name:        "mapb",
-			description: "Shows the previous 20 locations on the map",
-			callback:    nil,
-		},
-	}
 }
