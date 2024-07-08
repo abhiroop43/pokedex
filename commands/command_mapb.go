@@ -5,8 +5,8 @@ import (
 	"fmt"
 )
 
-func CommandMap(config *dto.Config) error {
-	locations, err := config.PokeApiClient.ListLocations(config.NextLocationUrl)
+func CommandMapB(config *dto.Config) error {
+	locations, err := config.PokeApiClient.ListLocations(config.PreviousLocationUrl)
 	if err != nil {
 		_ = fmt.Errorf("error fetching locations: %v", err)
 	}

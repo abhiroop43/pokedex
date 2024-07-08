@@ -1,5 +1,10 @@
 package main
 
+import "abhiroop43/pokedex/dto"
+
 func main() {
-	startRepl()
+	config := dto.Config{
+		PokeApiClient: dto.Client{},
+	}
+	startRepl(&config)
 }

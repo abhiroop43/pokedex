@@ -1,8 +1,11 @@
 package commands
 
-import "fmt"
+import (
+	"abhiroop43/pokedex/dto"
+	"fmt"
+)
 
-func CommandHelp() error {
+func CommandHelp(config *dto.Config) error {
 	fmt.Printf("Welcome to the Pokedex\n")
 	fmt.Printf("The available commands are as follows:\n\n")
 

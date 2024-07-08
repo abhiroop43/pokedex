@@ -1,8 +1,11 @@
 package commands
 
-import "os"
+import (
+	"abhiroop43/pokedex/dto"
+	"os"
+)
 
-func CommandExit() error {
+func CommandExit(config *dto.Config) error {
 	os.Exit(0)
 	return nil
 }

@@ -22,7 +22,7 @@ func GetCommands() map[string]dto.CliCommand {
 		"mapb": {
 			Name:        "mapb",
 			Description: "Shows the previous 20 locations on the map",
-			Callback:    nil,
+			Callback:    CommandMapB,
 		},
 	}
 }

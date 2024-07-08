@@ -3,5 +3,5 @@ package dto
 type CliCommand struct {
 	Name        string
 	Description string
-	Callback    func() error
+	Callback    func(config *Config) error
 }

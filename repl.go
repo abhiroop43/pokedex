@@ -2,6 +2,7 @@ package main
 
 import (
 	"abhiroop43/pokedex/commands"
+	"abhiroop43/pokedex/dto"
 	"bufio"
 	"fmt"
 	"os"
@@ -14,7 +15,7 @@ type cliCommand struct {
 	callback    func() error
 }
 
-func startRepl() {
+func startRepl(config *dto.Config) {
 	scanner := bufio.NewScanner(os.Stdin)
 
 	for {
@@ -39,7 +40,7 @@ func startRepl() {
 			continue
 		}
 
-		err := command.Callback()
+		err := command.Callback(config)
 
 		if err != nil {
 			fmt.Println(err.Error())
