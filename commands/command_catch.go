@@ -26,6 +26,8 @@ func CommandCatch(config *dto.Config, args ...string) error {
 		return fmt.Errorf("failed to catch: %s", pokemonName)
 	}
 
+	config.CaughtPokemon[pokemonName] = pokemonDetails
+
 	fmt.Printf("Pokemon %s was caught!\n", pokemonName)
 
 	return nil
