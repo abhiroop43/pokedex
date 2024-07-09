@@ -34,6 +34,11 @@ func GetCommands() map[string]dto.CliCommand {
 			Description: "Inspect a Pokemon that has been caught and is available in your Pokedex",
 			Callback:    CommandInspect,
 		},
+		"pokedex": {
+			Name:        "View your Pokedex",
+			Description: "View your Pokedex and all the Pokemons caught",
+			Callback:    CommandPokedex,
+		},
 		"exit": {
 			Name:        "exit",
 			Description: "Closes the Pokedex",
