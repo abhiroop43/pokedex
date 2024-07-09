@@ -29,6 +29,11 @@ func GetCommands() map[string]dto.CliCommand {
 			Description: "Try to catch a Pokemon for your Pokedex",
 			Callback:    CommandCatch,
 		},
+		"inspect": {
+			Name:        "inspect (a pokemon)",
+			Description: "Inspect a Pokemon that has been caught and is available in your Pokedex",
+			Callback:    CommandInspect,
+		},
 		"exit": {
 			Name:        "exit",
 			Description: "Closes the Pokedex",
